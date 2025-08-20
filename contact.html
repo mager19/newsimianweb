@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Contacto | Simian</title>
+		<title>Simian: Desarrollo web, WordPress y automatizaciones con IA</title>
 
 		<!-- Fuentes de Google -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,13 +21,17 @@
 			referrerpolicy="no-referrer" />
 
 		<!-- Meta tags para SEO -->
-		<meta name="description" content="Contacta con Simian - Technology for human beings. Escríbenos para hacer tu proyecto digital realidad." />
+		<meta
+			name="description"
+			content="Soluciones en WordPress, PWAs y automatizaciones con IA. UX/UI, Core Web Vitals y alta disponibilidad para marcas que necesitan escalar." />
 		<meta name="keywords" content="contacto, simian, technology for human beings, consultoría digital, automatizaciones" />
 		<meta name="author" content="Simian" />
 
 		<!-- Open Graph -->
 		<meta property="og:title" content="Contacto | Simian" />
-		<meta property="og:description" content="Contacta con Simian - Technology for human beings. Escríbenos para hacer tu proyecto digital realidad." />
+		<meta
+			property="og:description"
+			content="Conoce nuestro portafolio de proyectos digitales: PWAs, sitios web, aplicaciones móviles y automatizaciones desarrolladas para diversos sectores." />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="" />
 
@@ -173,7 +177,7 @@
 
 						<!-- Columna Derecha: Formulario -->
 						<div class="flex flex-col gap-6">
-							<form id="contact-form" action="https://formspree.io/f/info@simian.co" method="POST" class="flex flex-col">
+							<form id="my-form" action="https://formspree.io/f/myzpqbol" method="POST" class="flex flex-col">
 								<!-- Campo Nombre -->
 								<div class="flex flex-col gap-3 mb-6">
 									<label class="font-['Source_Sans_Pro'] font-semibold text-[#1b1918] text-[18px] tracking-[-0.045px] leading-[28px]"> Nombre </label>
@@ -354,19 +358,13 @@
 
 		<!-- Script principal -->
 
+		<!-- Place this script at the end of the body tag -->
 		<script>
-			var form = document.getElementById("contact-form");
+			var form = document.getElementById("my-form");
 
 			async function handleSubmit(event) {
 				event.preventDefault();
 				var status = document.getElementById("my-form-status");
-				var submitButton = form.querySelector('button[type="submit"]');
-
-				// Mostrar estado de carga
-				submitButton.disabled = true;
-				submitButton.textContent = "Enviando...";
-				status.innerHTML = "";
-
 				var data = new FormData(event.target);
 				fetch(event.target.action, {
 					method: form.method,
@@ -377,28 +375,20 @@
 				})
 					.then((response) => {
 						if (response.ok) {
-							status.innerHTML = "¡Gracias por tu mensaje! Te contactaremos pronto.";
-							status.className = "text-[#0b785d] font-['Source_Sans_Pro'] font-medium text-[16px] min-h-[24px]";
+							status.innerHTML = "Thanks for your submission!";
 							form.reset();
 						} else {
 							response.json().then((data) => {
 								if (Object.hasOwn(data, "errors")) {
 									status.innerHTML = data["errors"].map((error) => error["message"]).join(", ");
 								} else {
-									status.innerHTML = "Oops! Hubo un problema al enviar tu formulario";
+									status.innerHTML = "Oops! There was a problem submitting your form";
 								}
-								status.className = "text-[#ef4444] font-['Source_Sans_Pro'] font-medium text-[16px] min-h-[24px]";
 							});
 						}
 					})
 					.catch((error) => {
-						status.innerHTML = "Oops! Hubo un problema al enviar tu formulario";
-						status.className = "text-[#ef4444] font-['Source_Sans_Pro'] font-medium text-[16px] min-h-[24px]";
-					})
-					.finally(() => {
-						// Restaurar botón
-						submitButton.disabled = false;
-						submitButton.textContent = "Enviar";
+						status.innerHTML = "Oops! There was a problem submitting your form";
 					});
 			}
 			form.addEventListener("submit", handleSubmit);
