@@ -376,20 +376,20 @@
 				})
 					.then((response) => {
 						if (response.ok) {
-							status.innerHTML = "Thanks for your submission!";
+							status.innerHTML = "Gracias por contactarnos!";
 							form.reset();
 						} else {
 							response.json().then((data) => {
 								if (Object.hasOwn(data, "errors")) {
 									status.innerHTML = data["errors"].map((error) => error["message"]).join(", ");
 								} else {
-									status.innerHTML = "Oops! There was a problem submitting your form";
+									status.innerHTML = "¡Vaya! Hubo un problema al enviar su formulario";
 								}
 							});
 						}
 					})
 					.catch((error) => {
-						status.innerHTML = "Oops! There was a problem submitting your form";
+						status.innerHTML = "¡Vaya! Hubo un problema al enviar su formulario";
 					});
 			}
 			form.addEventListener("submit", handleSubmit);
